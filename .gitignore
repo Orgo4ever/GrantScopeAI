@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Large raw datasets
+Data/Raw_Data/*
+!Data/Raw_Data/README.md
+!Data/Raw_Data/.gitkeep
+
+# Operating-system files
+.DS_Store
+Thumbs.db
