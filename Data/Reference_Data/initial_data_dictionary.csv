@@ -1,0 +1,17 @@
+processed_field,description,planned_type,NSF_source,CORDIS_source,OpenAlex_source,required
+source,Original data source,string,Constant: NSF,Constant: CORDIS,Constant: OpenAlex,Yes
+source_record_id,Unique identifier from the original source,string,id,id / project_id_clean,id when publication-level data is used,Yes
+title,Project or publication title,string,title,title,title,Yes
+abstract,"Project abstract, objective, or description",string,abstractText,objective,abstract_inverted_index if extracted,Yes for grants
+start_date,Project start date,datetime,startDate,startDate,Not applicable,Yes for grants
+end_date,Project end or expiration date,datetime,expDate,endDate,Not applicable,No
+record_year,Year used for trend analysis,integer,startDate or date,startDate,publication_year,Yes
+organisation,Lead or coordinating organisation,string,awardeeName,organization.name where role identifies coordinator,institution when extracted,No
+country,Lead organisation or project country,string,awardeeCountryCode,organization.country,institution country when extracted,No
+funder,Funding organisation,string,agency,European Commission,Not used initially,Yes for grants
+programme,"Funding programme, scheme, or division",string,fundProgramName; primaryProgram; dirAbbr; divAbbr,fundingScheme; frameworkProgramme; legalBasis,Not applicable,No
+award_amount,Primary reported award or contribution amount,float,estimatedTotalAmt,ecMaxContribution,Not applicable,No
+currency,Native currency of the funding amount,string,Constant: USD,Constant: EUR,Not applicable,Yes when award amount exists
+topic_labels,Scientific or funding-topic classifications,string/list,matched_queries; programme fields; later text categories,EuroSciVoc titles; Horizon topics; keywords,GrantScopeAI topic category,Yes
+source_url,Link to the original source record,string,Constructed from award ID,webLink.physUrl or constructed project link,OpenAlex work URL or DOI,No
+extraction_date,Date the source data was acquired,date,Added during acquisition,Added during processing,Added during acquisition,Yes
