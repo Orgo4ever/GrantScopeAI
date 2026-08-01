@@ -1,0 +1,41 @@
+topic,publication_year,publication_count,search_query,source
+AI-enabled chemistry,2021,40651,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (chemistry OR chemical)",OpenAlex
+AI-enabled chemistry,2022,54337,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (chemistry OR chemical)",OpenAlex
+AI-enabled chemistry,2023,96605,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (chemistry OR chemical)",OpenAlex
+AI-enabled chemistry,2024,112587,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (chemistry OR chemical)",OpenAlex
+AI-enabled chemistry,2025,142246,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (chemistry OR chemical)",OpenAlex
+AI-enabled materials,2021,107790,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (""materials science"" OR materials)",OpenAlex
+AI-enabled materials,2022,146376,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (""materials science"" OR materials)",OpenAlex
+AI-enabled materials,2023,250712,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (""materials science"" OR materials)",OpenAlex
+AI-enabled materials,2024,295260,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (""materials science"" OR materials)",OpenAlex
+AI-enabled materials,2025,386893,"(""machine learning"" OR ""artificial intelligence"" OR ""deep learning"") AND (""materials science"" OR materials)",OpenAlex
+Materials informatics,2021,398,"""materials informatics""",OpenAlex
+Materials informatics,2022,511,"""materials informatics""",OpenAlex
+Materials informatics,2023,807,"""materials informatics""",OpenAlex
+Materials informatics,2024,836,"""materials informatics""",OpenAlex
+Materials informatics,2025,1021,"""materials informatics""",OpenAlex
+Cheminformatics,2021,2511,cheminformatics,OpenAlex
+Cheminformatics,2022,2997,cheminformatics,OpenAlex
+Cheminformatics,2023,4606,cheminformatics,OpenAlex
+Cheminformatics,2024,4590,cheminformatics,OpenAlex
+Cheminformatics,2025,4975,cheminformatics,OpenAlex
+Molecular machine learning,2021,189,"""molecular machine learning""",OpenAlex
+Molecular machine learning,2022,263,"""molecular machine learning""",OpenAlex
+Molecular machine learning,2023,633,"""molecular machine learning""",OpenAlex
+Molecular machine learning,2024,633,"""molecular machine learning""",OpenAlex
+Molecular machine learning,2025,549,"""molecular machine learning""",OpenAlex
+Reaction prediction,2021,197,"""reaction prediction"" AND (""machine learning"" OR ""artificial intelligence"")",OpenAlex
+Reaction prediction,2022,256,"""reaction prediction"" AND (""machine learning"" OR ""artificial intelligence"")",OpenAlex
+Reaction prediction,2023,484,"""reaction prediction"" AND (""machine learning"" OR ""artificial intelligence"")",OpenAlex
+Reaction prediction,2024,505,"""reaction prediction"" AND (""machine learning"" OR ""artificial intelligence"")",OpenAlex
+Reaction prediction,2025,576,"""reaction prediction"" AND (""machine learning"" OR ""artificial intelligence"")",OpenAlex
+AI-enabled catalysis,2021,6094,"(""machine learning"" OR ""artificial intelligence"") AND (catalysis OR catalyst)",OpenAlex
+AI-enabled catalysis,2022,8449,"(""machine learning"" OR ""artificial intelligence"") AND (catalysis OR catalyst)",OpenAlex
+AI-enabled catalysis,2023,18137,"(""machine learning"" OR ""artificial intelligence"") AND (catalysis OR catalyst)",OpenAlex
+AI-enabled catalysis,2024,25744,"(""machine learning"" OR ""artificial intelligence"") AND (catalysis OR catalyst)",OpenAlex
+AI-enabled catalysis,2025,39893,"(""machine learning"" OR ""artificial intelligence"") AND (catalysis OR catalyst)",OpenAlex
+Autonomous laboratories,2021,75,"""autonomous laboratory"" OR ""self-driving laboratory""",OpenAlex
+Autonomous laboratories,2022,119,"""autonomous laboratory"" OR ""self-driving laboratory""",OpenAlex
+Autonomous laboratories,2023,273,"""autonomous laboratory"" OR ""self-driving laboratory""",OpenAlex
+Autonomous laboratories,2024,440,"""autonomous laboratory"" OR ""self-driving laboratory""",OpenAlex
+Autonomous laboratories,2025,859,"""autonomous laboratory"" OR ""self-driving laboratory""",OpenAlex
