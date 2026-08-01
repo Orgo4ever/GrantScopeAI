@@ -11,10 +11,10 @@ venv/
 .env
 .streamlit/secrets.toml
 
-# Large raw datasets
-Data/Raw_Data/*
-!Data/Raw_Data/README.md
-!Data/Raw_Data/.gitkeep
+# Raw datasets: keep locally, do not commit
+/Data/Raw_Data/*
+!/Data/Raw_Data/README.md
+!/Data/Raw_Data/.gitkeep
 
 # Operating-system files
 .DS_Store
