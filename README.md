@@ -31,32 +31,32 @@ The acquisition process is documented in the source-validation notebook.
 
 ## Data preparation
 
-GrantScopeAI currently combines funding data from:
+GrantScopeAI combines three complementary data sources:
 
-- **CORDIS** — European Union Horizon Europe projects;
+- **CORDIS** — European Union Horizon Europe research projects;
 - **NSF Awards** — United States research awards;
-- **OpenAlex** — publication activity and research momentum.
+- **OpenAlex** — publication activity and research-momentum context.
 
-The main analysis period is **2021–2025**.
+The shared analysis period is **2021–2025**.
 
-### Processing approach
+### Funding-data preparation
 
-Each funding source is standardized to one row per unique grant or project.
+The NSF and CORDIS datasets are standardized to one row per unique grant or project.
 
 - CORDIS participant and consortium records are aggregated to the project level.
 - Repeated NSF extraction records are consolidated using the NSF award ID.
 - Original source identifiers and URLs are retained for traceability.
-- Funding amounts, dates, organisations, programmes, and descriptive text are standardized.
+- Dates, funding amounts, organisations, programmes, and descriptive text are standardized.
 
-### Relevance tiers
+### Funding relevance tiers
 
-Funding records are classified using AI and chemistry/materials keyword rules:
+NSF and CORDIS records are classified using AI and chemistry/materials keyword rules:
 
 - `core_match` — higher-confidence records passing the refined relevance filter;
-- `broad_match` — potentially relevant records passing the high-recall filter;
-- `out_of_scope` — records retained in full local datasets but excluded from the candidate datasets.
+- `broad_match` — potentially relevant records passing the broader high-recall filter;
+- `out_of_scope` — records retained in full local datasets but excluded from candidate outputs.
 
-Extraction-query labels are not used for classification, preventing circular relevance decisions.
+Extraction-query labels are not used for relevance classification, preventing circular classification decisions.
 
 ### Current funding candidate datasets
 
@@ -66,11 +66,52 @@ Extraction-query labels are not used for classification, preventing circular rel
 | NSF | 1,757 | 907 | 2,664 |
 | **Combined** | **2,173** | **1,166** | **3,339** |
 
+### OpenAlex publication context
+
+OpenAlex is stored separately from grant-level records because it has a different analytical grain.
+
+The processed dataset contains:
+
+- 40 unique topic-year records;
+- eight selected research topics;
+- complete annual coverage from 2021 through 2025;
+- no duplicate topic-year combinations;
+- no missing or negative publication counts.
+
+Publication momentum is represented using:
+
+- annual publication counts;
+- year-over-year growth;
+- a 2021 baseline index;
+- total growth from 2021 to 2025;
+- compound annual growth rate.
+
+OpenAlex topic counts are compared within topics rather than summed together because the search queries may overlap. Publication growth is treated as evidence of research activity, not as proof of research quality or future funding availability.
+
+### Processed outputs
+
+#### CORDIS
+
+- compact CORDIS candidate dataset containing 675 projects;
+- full enriched CORDIS dataset retained locally.
+
+#### NSF
+
+- `nsf_candidate_awards_compact_2021_2025.csv`;
+- 2,664 candidate awards across 27 application-ready fields;
+- full cleaned and diagnostic datasets retained locally.
+
+#### OpenAlex
+
+- `openalex_topic_year_clean_2021_2025.csv`;
+- `openalex_topic_momentum_summary_2021_2025.csv`;
+- `openalex_cleaning_validation_summary.csv`.
+
 ### Data storage
 
-Large raw and enriched datasets are stored locally and excluded from GitHub using `.gitignore`.
+Large raw and enriched datasets are stored locally and excluded from GitHub through `.gitignore`.
 
-The repository contains compact processed datasets intended for:
+The repository contains compact processed outputs intended for:
 
 - Python analysis;
 - Tableau dashboards;
@@ -79,6 +120,7 @@ The repository contains compact processed datasets intended for:
 
 Detailed cleaning decisions and validation steps are documented in:
 
-- `Notebooks/02_cordis_cleaning.ipynb`
-- `Notebooks/03_nsf_cleaning.ipynb`
-- the project decision log
+- `Notebooks/02_cordis_cleaning.ipynb`;
+- `Notebooks/03_nsf_cleaning.ipynb`;
+- `Notebooks/04_openalex_preparation.ipynb`;
+- the project decision log.

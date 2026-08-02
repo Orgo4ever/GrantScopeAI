@@ -221,3 +221,77 @@ The following pattern was added to `.gitignore`:
 
 ```text
 Data/Processed_Data/CORDIS/cordis_projects_enriched_*.csv
+
+---
+
+## 2026-08-02 — OpenAlex publication-context preparation
+
+### 1. Keep OpenAlex separate from grant-level records
+
+**Decision:** Store OpenAlex as a separate topic-year dataset rather than combining its rows directly with individual NSF or CORDIS grants.
+
+**Rationale:** OpenAlex measures publication activity, while NSF and CORDIS contain individual funding awards. These sources have different analytical grains and should not be treated as equivalent records.
+
+**Impact:** OpenAlex will provide publication-context and research-momentum indicators alongside, but separate from, the combined funding dataset.
+
+---
+
+### 2. Use one row per topic-year
+
+**Decision:** Define the OpenAlex analytical grain as one row per research topic and publication year.
+
+**Rationale:** The source contains eight selected topics across the five-year period from 2021 through 2025.
+
+**Impact:** The final cleaned dataset contains 40 unique topic-year records with no duplicates or missing annual coverage.
+
+---
+
+### 3. Measure publication momentum within each topic
+
+**Decision:** Calculate annual publication counts, year-over-year growth, a 2021 baseline index, total growth, and compound annual growth rate.
+
+**Rationale:** These metrics describe how publication activity changes over time within each topic.
+
+**Impact:** GrantScopeAI can compare research momentum across the selected fields while accounting for differences in starting publication volume.
+
+---
+
+### 4. Do not sum publication counts across topics
+
+**Decision:** Compare publication trends within topics rather than adding the eight topic counts into a single publication total.
+
+**Rationale:** The OpenAlex search queries may overlap, meaning the same publication could be counted under more than one topic.
+
+**Impact:** Topic-level results remain interpretable without presenting potentially duplicated totals.
+
+---
+
+### 5. Treat publication growth as context rather than proof
+
+**Decision:** Use OpenAlex growth metrics as indicators of research activity, not as direct measures of research quality, novelty, or future funding availability.
+
+**Rationale:** A growing publication count shows increased activity but does not establish scientific importance or guarantee corresponding grant opportunities.
+
+**Impact:** OpenAlex metrics will support GrantScopeAI recommendations without determining them on their own.
+
+---
+
+### 6. OpenAlex validation results
+
+The cleaned OpenAlex dataset contains:
+
+- 40 topic-year records;
+- eight research topics;
+- five years of complete coverage from 2021 through 2025;
+- no duplicate topic-year combinations;
+- no missing topic labels, years, or publication counts;
+- no negative publication counts;
+- eight expected missing year-over-year values for the 2021 baseline records.
+
+Three processed outputs were created:
+
+- `openalex_topic_year_clean_2021_2025.csv`;
+- `openalex_topic_momentum_summary_2021_2025.csv`;
+- `openalex_cleaning_validation_summary.csv`.
+
+All OpenAlex outputs are small enough to remain under version control.
