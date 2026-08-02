@@ -1,0 +1,15 @@
+﻿check,result
+Total topic-year rows,40
+Unique topics,8
+Unique publication years,5
+Expected years present,True
+Duplicate topic-year combinations,0
+Duplicate topic-year keys,0
+Missing topic labels,0
+Missing publication years,0
+Missing publication counts,0
+Negative publication counts,0
+Topics with incomplete year coverage,0
+Invalid 2021 baseline indexes,0
+Rows with year-over-year growth,32
+Rows without year-over-year growth,8
