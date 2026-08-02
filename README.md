@@ -28,3 +28,57 @@ Expected sources:
 - CORDIS Horizon Europe and Horizon 2020 data
 
 The acquisition process is documented in the source-validation notebook.
+
+## Data preparation
+
+GrantScopeAI currently combines funding data from:
+
+- **CORDIS** — European Union Horizon Europe projects;
+- **NSF Awards** — United States research awards;
+- **OpenAlex** — publication activity and research momentum.
+
+The main analysis period is **2021–2025**.
+
+### Processing approach
+
+Each funding source is standardized to one row per unique grant or project.
+
+- CORDIS participant and consortium records are aggregated to the project level.
+- Repeated NSF extraction records are consolidated using the NSF award ID.
+- Original source identifiers and URLs are retained for traceability.
+- Funding amounts, dates, organisations, programmes, and descriptive text are standardized.
+
+### Relevance tiers
+
+Funding records are classified using AI and chemistry/materials keyword rules:
+
+- `core_match` — higher-confidence records passing the refined relevance filter;
+- `broad_match` — potentially relevant records passing the high-recall filter;
+- `out_of_scope` — records retained in full local datasets but excluded from the candidate datasets.
+
+Extraction-query labels are not used for classification, preventing circular relevance decisions.
+
+### Current funding candidate datasets
+
+| Source | Core matches | Broad matches | Total candidates |
+|---|---:|---:|---:|
+| CORDIS | 416 | 259 | 675 |
+| NSF | 1,757 | 907 | 2,664 |
+| **Combined** | **2,173** | **1,166** | **3,339** |
+
+### Data storage
+
+Large raw and enriched datasets are stored locally and excluded from GitHub using `.gitignore`.
+
+The repository contains compact processed datasets intended for:
+
+- Python analysis;
+- Tableau dashboards;
+- the Streamlit application;
+- cross-source integration.
+
+Detailed cleaning decisions and validation steps are documented in:
+
+- `Notebooks/02_cordis_cleaning.ipynb`
+- `Notebooks/03_nsf_cleaning.ipynb`
+- the project decision log
