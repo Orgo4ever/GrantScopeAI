@@ -1,0 +1,15 @@
+﻿check,result
+Full cleaned award rows,19916
+Unique award IDs,19916
+Duplicate award IDs,0
+Unique grant keys,19916
+Candidate awards,2664
+Core matches,1757
+Broad matches,907
+Candidate duplicate IDs,0
+Missing candidate titles,0
+Missing candidate abstracts,0
+Missing candidate amounts,0
+Missing candidate organisations,0
+Missing candidate source URLs,0
+Non-USD candidate records,0

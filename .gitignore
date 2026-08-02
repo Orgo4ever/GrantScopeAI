@@ -20,4 +20,8 @@ venv/
 .DS_Store
 Thumbs.db
 # Large generated CORDIS dataset
-Data/Processed_Data/CORDIS/cordis_projects_enriched_*.csv
+Data/Processed_Data/CORDIS/cordis_projects_enriched_*.csv# NSF raw and large processed datasets
+Data/Raw_Data/nsf_grantscope_raw_*.csv
+Data/Processed_Data/NSF/nsf_awards_cleaned_*.csv
+Data/Processed_Data/NSF/nsf_candidate_awards_2021_2025.csv
+/Data/Processed_Data/CORDIS/cordis_projects_enriched_2021_2025.csv
