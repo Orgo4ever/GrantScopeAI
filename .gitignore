@@ -19,3 +19,5 @@ venv/
 # Operating-system files
 .DS_Store
 Thumbs.db
+# Large generated CORDIS dataset
+Data/Processed_Data/CORDIS/cordis_projects_enriched_*.csv
