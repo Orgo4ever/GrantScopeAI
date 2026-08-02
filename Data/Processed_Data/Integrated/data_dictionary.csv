@@ -1,0 +1,26 @@
+﻿table_name,column_name,data_type,definition,source_availability,nullable,missing_count,transformation,limitations
+grants_clean,source,string,Funding source that supplied the record.,CORDIS and NSF,False,0,Standardized from the corresponding source field.,
+grants_clean,grant_key,string,Globally unique source-prefixed grant identifier.,CORDIS and NSF,False,0,CORDIS_ or NSF_ prefix added to the source identifier.,
+grants_clean,source_id,string,Original award or project identifier from the source.,CORDIS and NSF,False,0,Standardized from the corresponding source field.,
+grants_clean,title,string,Title of the funded award or project.,CORDIS and NSF,False,0,Standardized from the corresponding source field.,
+grants_clean,abstract,string,Main descriptive text for the funded activity.,CORDIS and NSF,False,0,CORDIS objective and NSF abstract mapped to one field.,
+grants_clean,start_date,datetime64[ns],Start date of the funded activity.,CORDIS and NSF,False,0,Parsed to datetime using source-specific ISO formats.,
+grants_clean,end_date,datetime64[ns],End date of the funded activity.,CORDIS and NSF,False,0,Parsed to datetime using source-specific ISO formats.,
+grants_clean,award_year,Int64,Calendar year in which the funded activity began.,CORDIS and NSF,False,0,Derived from the standardized start date.,
+grants_clean,amount_native,Float64,Primary funding amount in the source currency.,CORDIS and NSF,False,0,CORDIS uses ecMaxContribution; NSF uses estimatedTotalAmt.,EUR and USD values must not be summed or directly compared without an exchange-rate method.
+grants_clean,project_total_cost,Float64,Total project cost reported by CORDIS.,CORDIS only,True,2664,Standardized from the corresponding source field.,CORDIS totalCost is incomplete or inconsistent for some projects and is not used as the primary award amount.
+grants_clean,amount_obligated,Float64,Funding formally obligated to date by NSF.,NSF only,True,675,Standardized from the corresponding source field.,"Represents committed NSF funding, not necessarily the final estimated award value."
+grants_clean,currency,string,Native currency of the primary funding amount.,CORDIS and NSF,False,0,Assigned as EUR for CORDIS and retained as USD for NSF.,
+grants_clean,organisation_name,string,"Lead, coordinating, or recipient organisation.",CORDIS and NSF,False,0,Standardized from the corresponding source field.,
+grants_clean,organisation_city,string,City of the lead or recipient organisation.,CORDIS and NSF,False,0,Standardized from the corresponding source field.,
+grants_clean,organisation_country,string,Country or country code reported by the source.,CORDIS and NSF,False,0,Standardized from the corresponding source field.,Country representation follows source reporting and may use country codes rather than full names.
+grants_clean,programme_name,string,"Funding programme, call topic, or programme label.",CORDIS and NSF,False,0,CORDIS uses call_topic_title; NSF uses programme_name.,
+grants_clean,funding_mechanism,string,Source-specific funding scheme or mechanism.,CORDIS only,True,2664,Standardized from the corresponding source field.,No directly comparable NSF field was available.
+grants_clean,status,string,Source-reported or derived award status.,CORDIS and NSF,False,0,CORDIS retains source status; NSF Boolean status mapped to ACTIVE or INACTIVE.,
+grants_clean,activity_type,string,Standardized activity category where available.,NSF only,True,675,Standardized from the corresponding source field.,CORDIS nature was missing for all candidate projects.
+grants_clean,source_activity_type,string,Original source-specific activity classification.,NSF only,True,675,Standardized from the corresponding source field.,CORDIS nature was missing for all candidate projects.
+grants_clean,source_url,string,Link to the original award or project record.,CORDIS and NSF,False,0,Standardized from the corresponding source field.,
+grants_clean,relevance_tier,string,Core or broad AI–chemistry/materials relevance tier.,CORDIS and NSF,False,0,Standardized from the corresponding source field.,
+grants_clean,primary_topic,object,Highest-priority taxonomy topic assigned to the grant.,Derived for both sources,False,0,Assigned using ordered rule-based keyword taxonomy.,Priority-based assignment; grants may legitimately match multiple topics.
+grants_clean,matched_topics,object,All named taxonomy topics matched by the grant.,Derived for both sources,False,0,Pipe-separated list of all rule-based topic matches.,"Topic categories overlap, so counts across topics should not be added as unique-grant totals."
+grants_clean,topic_match_count,Int64,Number of named taxonomy topics matched.,Derived for both sources,False,0,Count of named taxonomy topics matched by each grant.,A value of zero indicates the grant is retained in the fallback topic category.

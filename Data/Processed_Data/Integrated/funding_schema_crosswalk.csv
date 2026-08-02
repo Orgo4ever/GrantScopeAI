@@ -1,0 +1,21 @@
+﻿standard_column,cordis_field,nsf_field,definition
+source,constant: CORDIS,source,Original funding data source
+grant_key,CORDIS_ + project_id_clean,grant_key,Globally unique source-prefixed grant identifier
+source_id,project_id_clean,source_id,Original source-specific award or project identifier
+title,title,title,Grant or project title
+abstract,objective,abstract,Main descriptive text
+start_date,startDate,start_date,Grant or project start date
+end_date,endDate,end_date,Grant or project end date
+award_year,record_year,award_year,Year the funded activity began
+amount_native,ecMaxContribution,amount_native,Primary award value in the source currency
+currency,constant: EUR,currency,Native currency of the primary amount
+organisation_name,coordinator_name,organisation_name,Lead or recipient organisation
+organisation_city,coordinator_city,organisation_city,City of the lead or recipient organisation
+organisation_country,coordinator_country,organisation_country_code,Country or country code reported by the source
+programme_name,call_topic_title,programme_name,Funding programme or call topic
+funding_mechanism,fundingScheme,not available,Source-specific funding scheme or mechanism
+status,status,derived from is_active_award,Source-reported or derived award status
+source_url,preferred_project_url,source_url,Link to the original funding record
+relevance_tier,relevance_tier,relevance_tier,Core or broad relevance classification
+activity_type,not available,award_activity_type,Standardized activity category where available; currently provided only by NSF
+source_activity_type,nature,award_activity_type,Original source-specific activity classification; CORDIS nature is missing for all candidate projects

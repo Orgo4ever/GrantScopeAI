@@ -295,3 +295,328 @@ Three processed outputs were created:
 - `openalex_cleaning_validation_summary.csv`.
 
 All OpenAlex outputs are small enough to remain under version control.
+---
+
+## 2026-08-02 — Funding integration, topic mapping, and quality reporting
+
+### 1. Combine NSF and CORDIS at the grant level
+
+**Decision:** Standardize NSF and CORDIS into a shared schema and append them into one integrated funding table.
+
+**Rationale:** Both sources describe individual funded research activities, even though their original field names and metadata structures differ. They do not share identifiers, so the records are appended rather than joined to one another.
+
+**Impact:** The integrated funding table contains:
+
+- 675 CORDIS projects;
+- 2,664 NSF awards;
+- 3,339 total funding records;
+- 25 final analytical columns;
+- no duplicate global grant keys.
+
+Source-prefixed identifiers are used:
+
+- `CORDIS_<project_id>`;
+- `NSF_<award_id>`.
+
+---
+
+### 2. Use explicit source-to-standard field mappings
+
+**Decision:** Create a documented schema crosswalk before integrating the funding sources.
+
+**Rationale:** Fields are combined only when their analytical meanings are sufficiently comparable.
+
+Important mappings include:
+
+- CORDIS `objective` and NSF `abstract` → `abstract`;
+- CORDIS `coordinator_name` and NSF `organisation_name` → `organisation_name`;
+- CORDIS `call_topic_title` and NSF `programme_name` → `programme_name`;
+- source start dates → standardized `start_date`;
+- start-date year → standardized `award_year`.
+
+**Impact:** Shared fields can be analysed consistently while source-specific fields remain available separately.
+
+---
+
+### 3. Use maximum EU contribution as the primary CORDIS funding amount
+
+**Decision:** Use `ecMaxContribution` as the CORDIS `amount_native`.
+
+**Rationale:** `ecMaxContribution` represents the maximum EU funding contribution and is complete across the 675 candidate projects.
+
+The alternative `totalCost` field was not selected as the primary amount because:
+
+- some projects report a total cost of zero;
+- EU contribution exceeds reported total cost for 270 projects;
+- the field is not sufficiently consistent for use as the main award value.
+
+**Impact:** CORDIS funding is represented using EU contribution, while `totalCost` remains available separately as `project_total_cost`.
+
+---
+
+### 4. Preserve source-specific funding concepts
+
+**Decision:** Retain funding fields that do not have direct equivalents rather than forcing them into one definition.
+
+**Rationale:** The sources report different financial concepts:
+
+- CORDIS provides maximum EU contribution and total project cost;
+- NSF provides estimated total award value and obligated funding.
+
+**Impact:** The integrated table preserves:
+
+- `amount_native` for the selected primary source amount;
+- `project_total_cost` for CORDIS;
+- `amount_obligated` for NSF.
+
+These fields must be interpreted according to their source definitions.
+
+---
+
+### 5. Keep EUR and USD separate
+
+**Decision:** Preserve all funding values in their native currencies.
+
+**Rationale:** No exchange-rate source, reference date, or currency-conversion methodology has been defined.
+
+**Impact:**
+
+- CORDIS values remain in EUR;
+- NSF values remain in USD;
+- funding summaries are grouped by source and currency;
+- no combined EUR–USD funding total is calculated.
+
+---
+
+### 6. Do not infer missing source-specific classifications
+
+**Decision:** Leave unavailable fields missing rather than deriving them from loosely related metadata.
+
+**Rationale:** The CORDIS `nature` field is missing for all 675 candidate projects. CORDIS funding schemes are not equivalent to the NSF activity categories.
+
+NSF also has no directly comparable equivalent for the CORDIS funding-scheme field.
+
+**Impact:**
+
+- `activity_type` is available for NSF but remains missing for CORDIS;
+- `source_activity_type` remains missing for CORDIS;
+- `funding_mechanism` is available for CORDIS but remains missing for NSF.
+
+---
+
+### 7. Use a shared eight-topic research taxonomy
+
+**Decision:** Classify NSF and CORDIS grants using the same eight topics represented in OpenAlex:
+
+1. Autonomous laboratories;
+2. Reaction prediction;
+3. AI-enabled catalysis;
+4. Materials informatics;
+5. Cheminformatics;
+6. Molecular machine learning;
+7. AI-enabled materials;
+8. AI-enabled chemistry.
+
+**Rationale:** A shared topic vocabulary is required to compare funding activity with publication momentum.
+
+**Impact:** Topic labels align exactly across NSF, CORDIS, and OpenAlex.
+
+---
+
+### 8. Use transparent rule-based topic assignment
+
+**Decision:** Assign topics using documented keyword rules applied to:
+
+- title;
+- abstract;
+- programme name;
+- funding mechanism where available.
+
+**Rationale:** A transparent rule-based approach is easier to inspect, explain, and reproduce than an opaque classifier at this project stage.
+
+**Impact:** Each grant receives:
+
+- all valid matches in `matched_topics`;
+- the number of named matches in `topic_match_count`;
+- one priority-based `primary_topic`.
+
+Narrower categories are prioritized over broader umbrella categories.
+
+---
+
+### 9. Refine the broad materials and chemistry rules after review
+
+**Decision:** Expand the `AI-enabled materials` and `AI-enabled chemistry` rules after reviewing a reproducible sample of unclassified grants.
+
+**Rationale:** The initial rules missed relevant projects involving:
+
+- polymers and composites;
+- coatings and thin films;
+- semiconductors;
+- additive manufacturing;
+- fracture and deformation;
+- chemical-process engineering;
+- molecular simulation and spectroscopy.
+
+Unrelated robotics, cybersecurity, astronomy, and general biomedical terminology was not added.
+
+**Impact:**
+
+- 403 additional grants received a named topic;
+- named-topic coverage increased to 2,239 grants;
+- 1,100 grants remained in the fallback category.
+
+---
+
+### 10. Retain a documented fallback topic
+
+**Decision:** Keep unmatched candidate grants under:
+
+`Other AI-enabled chemistry/materials`
+
+**Rationale:** The eight named topics are intentionally narrower than the complete funding-candidate scope. Forcing every grant into a named topic would create weak or misleading classifications.
+
+**Impact:** The 1,100 fallback grants remain usable in GrantScopeAI without being presented as stronger topic matches than their text supports.
+
+---
+
+### 11. Preserve multi-topic relationships
+
+**Decision:** Create a separate grant-topic bridge with one row per valid grant–topic relationship.
+
+**Rationale:** Many interdisciplinary grants legitimately match more than one topic. Using only the primary topic would discard useful information.
+
+**Impact:** The bridge contains:
+
+- 3,245 grant-topic relationships;
+- 2,239 unique grants;
+- all eight named topics;
+- no duplicate grant-topic pairs.
+
+Because grants may occur under several topics, topic totals must not be added together and interpreted as unique-grant totals.
+
+---
+
+### 12. Create a complete topic-year funding grid
+
+**Decision:** Represent all topic-year-source combinations, including combinations with no observed grants.
+
+**Rationale:** Missing combinations should not disappear from charts or comparisons.
+
+The complete grid contains:
+
+- eight topics;
+- five years from 2021 through 2025;
+- two funding sources.
+
+**Impact:** The funding summary contains 80 rows.
+
+For zero-grant combinations:
+
+- grant counts are set to zero;
+- total funding is set to zero;
+- mean and median award values remain missing because no award distribution exists.
+
+Nineteen of the 80 combinations contain zero grants.
+
+---
+
+### 13. Keep OpenAlex separate from grant-level data
+
+**Decision:** Integrate OpenAlex only at the shared topic-year level.
+
+**Rationale:** OpenAlex represents publication activity rather than individual funding awards.
+
+**Impact:** OpenAlex is not merged directly into individual NSF or CORDIS records.
+
+Instead, a 40-row topic-year context table presents:
+
+- CORDIS grant counts and EUR funding;
+- NSF grant counts and USD funding;
+- OpenAlex publication counts and growth metrics.
+
+---
+
+### 14. Build a machine-readable integrated quality report
+
+**Decision:** Consolidate integration checks into one structured quality-report table.
+
+**Rationale:** Quality evidence should be reproducible and usable outside the notebook.
+
+Each rule records:
+
+- source;
+- processing stage;
+- validation rule;
+- records checked;
+- failures and failure rate;
+- severity;
+- status;
+- required action;
+- example identifiers where relevant.
+
+**Impact:** The report contains 20 quality rules:
+
+- 19 rules returned `PASS`;
+- one informational rule returned `REVIEW`.
+
+The review result represents grants retained in the fallback topic category and does not indicate failed processing.
+
+---
+
+### 15. Create formal integration documentation
+
+**Decision:** Export both a schema crosswalk and a data dictionary.
+
+**Rationale:** The integrated table contains fields with different source availability and interpretation constraints.
+
+**Impact:** The data dictionary documents all 25 final grant columns, including:
+
+- data type;
+- analytical definition;
+- source availability;
+- nullability;
+- transformation method;
+- interpretation limitations.
+
+---
+
+### 16. Export and independently verify all integrated outputs
+
+**Decision:** Export the integration outputs to:
+
+`Data/Processed_Data/Integrated/`
+
+The outputs are:
+
+- `grants_clean_2021_2025.csv`;
+- `grant_topic_bridge_2021_2025.csv`;
+- `grant_topic_year_summary_2021_2025.csv`;
+- `topic_year_context_2021_2025.csv`;
+- `data_quality_report.csv`;
+- `data_dictionary.csv`;
+- `funding_schema_crosswalk.csv`;
+- `topic_mapping.csv`.
+
+**Rationale:** The outputs support separate analytical needs, including grant-level analysis, many-to-many topic analysis, Tableau, Streamlit, and quality review.
+
+**Impact:** All eight files were reloaded successfully after export and matched their expected row and column counts.
+
+---
+
+### Day 5 completion status
+
+The three processed sources have now been integrated into a documented analytical structure.
+
+Final outputs include:
+
+- 3,339 integrated funding records;
+- 2,239 grants with at least one named topic;
+- 3,245 grant-topic relationships;
+- 1,100 fallback-topic grants;
+- an 80-row complete funding topic-year grid;
+- a 40-row funding-and-publication context table;
+- a 20-rule integrated quality report;
+- a 25-column data dictionary.
+
+**Next step:** Conduct exploratory data analysis using the integrated grant table, topic bridge, and topic-year context outputs.

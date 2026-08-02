@@ -124,3 +124,131 @@ Detailed cleaning decisions and validation steps are documented in:
 - `Notebooks/03_nsf_cleaning.ipynb`;
 - `Notebooks/04_openalex_preparation.ipynb`;
 - the project decision log.
+
+## Integrated data model
+
+The processed NSF and CORDIS candidate datasets have been standardized into a shared grant-level structure.
+
+The integrated funding table contains:
+
+- **3,339 unique funding records**;
+- **675 CORDIS projects**;
+- **2,664 NSF awards**;
+- **25 application-ready columns**;
+- no duplicate global grant identifiers;
+- complete coverage within the 2021–2025 project period.
+
+NSF and CORDIS are appended rather than joined because they represent separate funded activities and do not share identifiers.
+
+Source-prefixed grant keys are used to maintain global uniqueness:
+
+- `CORDIS_<project_id>`;
+- `NSF_<award_id>`.
+
+### Funding definitions
+
+The primary funding amount depends on the source:
+
+- **CORDIS:** maximum EU contribution, reported in EUR;
+- **NSF:** estimated total award value, reported in USD.
+
+Additional source-specific financial fields are retained:
+
+- CORDIS total project cost;
+- NSF obligated funding.
+
+EUR and USD values remain separate. No cross-currency totals are calculated because an exchange-rate methodology has not been defined.
+
+## Shared research-topic taxonomy
+
+Funding records are mapped to the same eight research topics used in the OpenAlex publication dataset:
+
+1. Autonomous laboratories
+2. Reaction prediction
+3. AI-enabled catalysis
+4. Materials informatics
+5. Cheminformatics
+6. Molecular machine learning
+7. AI-enabled materials
+8. AI-enabled chemistry
+
+Topic assignments use transparent keyword rules applied to grant titles, abstracts, programmes, and funding-mechanism text where available.
+
+Each grant contains:
+
+- a priority-based `primary_topic`;
+- all matched topics in `matched_topics`;
+- the number of named topic matches.
+
+Final topic coverage includes:
+
+- **2,239 grants** assigned to at least one named topic;
+- **3,245 grant-topic relationships**;
+- **1,100 grants** retained under `Other AI-enabled chemistry/materials`.
+
+The fallback category prevents weak or unsupported topic assignments.
+
+Because individual grants may match multiple topics, counts and funding totals across topics should not be added together as unique-grant totals.
+
+## Topic-year analytical tables
+
+Two topic-year structures support later analysis and dashboarding.
+
+### Funding topic-year summary
+
+The complete funding grid contains:
+
+- eight topics;
+- five years from 2021 through 2025;
+- two funding sources;
+- **80 source-topic-year rows**.
+
+Combinations with no observed grants are represented explicitly with zero grant counts and zero total funding.
+
+### Three-source context table
+
+The funding summaries are aligned with OpenAlex at the topic-year level.
+
+The resulting **40-row context table** contains:
+
+- CORDIS grant counts and EUR funding;
+- NSF grant counts and USD funding;
+- OpenAlex publication counts and growth metrics.
+
+OpenAlex remains separate from individual grant records because it measures publication activity rather than funding awards.
+
+## Data quality and documentation
+
+The integrated quality report contains **20 validation rules** covering:
+
+- source row-count reconciliation;
+- unique grant identifiers;
+- field completeness;
+- valid dates, amounts, currencies, and URLs;
+- relevance-tier values;
+- grant-topic relationship uniqueness;
+- OpenAlex topic-year completeness;
+- taxonomy alignment across sources.
+
+Results:
+
+- **19 rules passed**;
+- **1 informational rule requires review**.
+
+The review result represents grants intentionally retained in the fallback topic category and does not indicate failed processing.
+
+A formal data dictionary and schema crosswalk document:
+
+- column definitions;
+- source availability;
+- data types;
+- transformation logic;
+- nullability;
+- interpretation limitations.
+
+## Integrated processed outputs
+
+The following files are stored in:
+
+```text
+Data/Processed_Data/Integrated/
