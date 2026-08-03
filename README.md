@@ -252,3 +252,18 @@ The following files are stored in:
 
 ```text
 Data/Processed_Data/Integrated/
+
+## EDA summary
+
+The exploratory analysis identified several useful research-intelligence patterns:
+
+- AI-enabled materials and chemistry have the largest funding and publication footprints.
+- AI-enabled catalysis combines strong publication momentum with substantial grant activity.
+- Autonomous laboratories shows the fastest relative publication growth but remains small in absolute funding volume.
+- Materials informatics and reaction prediction show publication growth alongside lower recent grant activity.
+- NSF and CORDIS differ in their programme, organisation, geographic, and award-value structures.
+- Status fields are useful as source-specific filters but are not directly comparable.
+
+A manually reviewed demonstration set was created for the similarity model, and ten validated EDA outputs were exported for Tableau, Streamlit, and Notebook 07.
+
+The next step is to build and evaluate the explainable project-similarity model.

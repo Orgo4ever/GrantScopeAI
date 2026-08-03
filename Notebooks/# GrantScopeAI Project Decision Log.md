@@ -620,3 +620,186 @@ Final outputs include:
 - a 25-column data dictionary.
 
 **Next step:** Conduct exploratory data analysis using the integrated grant table, topic bridge, and topic-year context outputs.
+---
+
+## 2026-08-03 — Exploratory analysis and product-direction decisions
+
+### 1. Use primary topics for unique-grant analysis
+
+**Decision:** Use `primary_topic` when reporting unique-grant distributions and annual grant activity.
+
+**Rationale:** Grants may match multiple named topics. Using the primary topic ensures that each grant is counted only once.
+
+**Impact:** Multi-topic analysis remains available through the grant-topic bridge, but bridge totals must not be interpreted as unique-grant totals.
+
+---
+
+### 2. Compare NSF and CORDIS using counts and source-level percentages
+
+**Decision:** Use grant counts and within-source percentages for direct NSF–CORDIS comparisons.
+
+**Rationale:** NSF contributes 2,664 records while CORDIS contributes 675. Raw topic counts alone would be dominated by NSF.
+
+**Impact:** Topic-emphasis charts use each topic’s share within its own source.
+
+---
+
+### 3. Keep source funding values separate
+
+**Decision:** Analyse CORDIS award values in EUR and NSF award values in USD using separate summaries and figures.
+
+**Rationale:** The sources report different financial concepts and currencies.
+
+**Impact:** Median and interquartile ranges are preferred over means because both distributions are strongly right-skewed.
+
+---
+
+### 4. Measure both publication scale and publication momentum
+
+**Decision:** Use absolute publication counts alongside a 2021-indexed publication-growth measure.
+
+**Rationale:** Absolute counts favour large established topics, while percentage growth can exaggerate change from small baselines.
+
+**Impact:** The dashboard should distinguish established research scale from emerging momentum.
+
+---
+
+### 5. Use 2022–2025 for combined funding-growth comparisons
+
+**Decision:** Use 2022 as the baseline when comparing combined NSF and CORDIS grant activity.
+
+**Rationale:** The final CORDIS candidate dataset contains no qualifying 2021 records. A 2021 combined baseline would create an artificial growth effect.
+
+**Impact:** Publication and grant comparisons use the same 2022–2025 period.
+
+---
+
+### 6. Use recent grant volume instead of only grant-growth percentages
+
+**Decision:** Compare publication growth with 2025 unique-grant activity in the primary momentum matrix.
+
+**Rationale:** Several specialised topics have very small or zero grant baselines, making percentage-growth values unstable or undefined.
+
+**Impact:** The visual emphasizes publication momentum and observed recent funding scale without overstating small-count changes.
+
+---
+
+### 7. Treat funding–publication differences as signals
+
+**Decision:** Describe apparent gaps as patterns, divergences, or research-intelligence signals.
+
+**Rationale:** The datasets do not establish causality or prove that a topic is underfunded.
+
+**Impact:** Findings such as rapid autonomous-laboratory publication growth or declining reaction-prediction grant counts are presented cautiously.
+
+---
+
+### 8. Analyse programmes separately by source
+
+**Decision:** Keep NSF programmes and CORDIS call topics in separate rankings.
+
+**Rationale:** They represent different policy structures, project types, and researcher career stages.
+
+**Impact:** Programme comparisons remain interpretable without implying direct equivalence.
+
+---
+
+### 9. Represent organisations as lead recipients or coordinators
+
+**Decision:** Rank NSF primary awardees and CORDIS coordinating organisations.
+
+**Rationale:** The integrated table does not contain every partner in each collaboration or consortium.
+
+**Impact:** Organisation rankings are not presented as complete research networks or measures of institutional quality.
+
+---
+
+### 10. Limit geography analysis to meaningful source coverage
+
+**Decision:** Create a country ranking for CORDIS but not a combined NSF–CORDIS country comparison.
+
+**Rationale:** CORDIS spans 34 coordinator countries, while 2,662 of 2,664 NSF awards are recorded in the United States.
+
+**Impact:** Geography is shown as CORDIS coordinator activity. It does not represent all consortium participants.
+
+---
+
+### 11. Retain status as a source-specific filter
+
+**Decision:** Do not create a combined award-status metric.
+
+**Rationale:** NSF uses `ACTIVE` and `INACTIVE`, while CORDIS uses `SIGNED`, `CLOSED`, and `TERMINATED`. These categories are not equivalent.
+
+**Impact:** Status remains available for source-specific filtering in Streamlit or Tableau.
+
+---
+
+### 12. Normalize known programme-label errors
+
+**Decision:** Correct `ERC PROOF OF CONCEPT GRANTS2` to `ERC PROOF OF CONCEPT GRANTS`.
+
+**Rationale:** The trailing digit is a source-label inconsistency that would create a duplicate category in later outputs.
+
+**Impact:** Overall and topic-specific programme exports use the normalized label.
+
+---
+
+### 13. Create a manually reviewed similarity benchmark
+
+**Decision:** Manually score candidate grants against one prepared research concept.
+
+**Scoring scale:**
+
+- `3` — strong match;
+- `2` — relevant;
+- `1` — weak match;
+- `0` — not relevant.
+
+**Rationale:** Keyword overlap alone does not reliably measure conceptual similarity.
+
+**Impact:** Ten grants were reviewed, eight representative projects were retained, and repeated collaborative NSF awards were reduced to one benchmark representative.
+
+The benchmark is intended for qualitative evaluation rather than formal model validation.
+
+---
+
+### 14. Select the main product story
+
+**Decision:** Use the following two-part narrative:
+
+1. explore publication and funding momentum across AI-enabled chemistry topics;
+2. enter a research concept and retrieve similar funded projects.
+
+**Rationale:** This creates one coherent workflow for the Tableau dashboard, Streamlit application, and final presentation.
+
+**Impact:** The leading demonstration insight is:
+
+> AI-enabled catalysis combines strong publication momentum with meaningful funding activity, while autonomous laboratories is growing fastest from a much smaller funding base.
+
+---
+
+### 15. Export reusable EDA tables
+
+**Decision:** Export ten compact analytical tables to:
+
+`Data/Processed_Data/EDA/`
+
+**Impact:** The outputs support Tableau, Streamlit, model evaluation, and presentation development without rerunning the complete integration workflow.
+
+All ten exports were reloaded successfully and passed structural and duplicate validation.
+
+---
+
+### Day 6 completion status
+
+Notebook 06 now includes:
+
+- overall funding analysis;
+- publication scale and growth analysis;
+- funding-versus-publication comparison;
+- programme and organisation intelligence;
+- geographic and status analysis;
+- a manually reviewed similarity benchmark;
+- ten validated application-ready exports.
+
+**Next step:** Build and evaluate the keyword-overlap baseline and TF-IDF similarity model in Notebook 07.
