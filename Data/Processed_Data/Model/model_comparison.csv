@@ -1,0 +1,6 @@
+model,relevant_in_top_10,relevant_in_top_25,relevant_in_top_50,median_relevant_rank,best_strong_match_rank,weak_match_rank,relevant_above_weak_match
+Initial TF-IDF,0,1,1,76.0,54,138,4
+Normalized TF-IDF,0,1,2,93.0,41,54,2
+Concept-aware hybrid,0,1,5,42.0,26,27,2
+Field-aware hybrid,0,1,5,32.0,15,87,5
+Context-aware hybrid,0,3,5,39.0,14,212,7

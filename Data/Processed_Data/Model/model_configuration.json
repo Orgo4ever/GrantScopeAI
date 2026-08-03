@@ -1,0 +1,156 @@
+{
+  "model_name": "GrantScopeAI context-aware hybrid",
+  "title_weight": 3,
+  "tfidf_parameters": {
+    "stop_words": "english",
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 2,
+    "max_df": 0.95,
+    "sublinear_tf": true
+  },
+  "ranking_weights": {
+    "tfidf": 0.58,
+    "specific_domain": 0.17,
+    "context": 0.12,
+    "workflow": 0.13,
+    "off_domain_penalty": 0.1
+  },
+  "domain_concept_lexicon": {
+    "catalysis": [
+      "catalyst",
+      "electrocatalyst",
+      "photocatalyst",
+      "organocatalyst"
+    ],
+    "materials": [
+      "material",
+      "alloy",
+      "semiconductor",
+      "framework",
+      "composite",
+      "polymer"
+    ],
+    "chemistry": [
+      "chemical",
+      "chemistry",
+      "synthesis",
+      "synthetic",
+      "molecule",
+      "molecular"
+    ],
+    "reactions": [
+      "reaction",
+      "reactivity",
+      "mechanism",
+      "bond activation"
+    ],
+    "biology": [
+      "protein",
+      "enzyme",
+      "biological",
+      "biomolecule"
+    ],
+    "drug discovery": [
+      "drug",
+      "therapeutic",
+      "pharmaceutical"
+    ]
+  },
+  "workflow_concept_lexicon": {
+    "machine learning": [
+      "machine learning",
+      "artificial intelligence",
+      "deep learning",
+      "neural network",
+      "data driven"
+    ],
+    "automation": [
+      "automation",
+      "autonomous",
+      "robot",
+      "self driving"
+    ],
+    "experimentation": [
+      "experimentation",
+      "experiment"
+    ],
+    "closed loop": [
+      "closed loop"
+    ],
+    "optimization": [
+      "optimization",
+      "optimize",
+      "screening"
+    ],
+    "discovery": [
+      "discovery",
+      "design"
+    ]
+  },
+  "context_concept_lexicon": {
+    "chemistry": [
+      "chemical",
+      "chemistry",
+      "synthesis",
+      "synthetic",
+      "organic",
+      "molecule",
+      "molecular"
+    ],
+    "reactions": [
+      "reaction",
+      "reactivity",
+      "mechanism",
+      "mechanistic",
+      "bond activation",
+      "transformation"
+    ],
+    "materials": [
+      "material",
+      "alloy",
+      "polymer",
+      "semiconductor",
+      "framework",
+      "composite"
+    ]
+  },
+  "domain_context_expansion": {
+    "catalysis": [
+      "chemistry",
+      "reactions"
+    ],
+    "materials": [
+      "materials",
+      "chemistry"
+    ],
+    "chemistry": [
+      "chemistry",
+      "reactions"
+    ],
+    "reactions": [
+      "reactions",
+      "chemistry"
+    ]
+  },
+  "application_lexicon": {
+    "drug discovery": [
+      "drug discovery",
+      "drug",
+      "therapeutic",
+      "pharmaceutical"
+    ],
+    "biology": [
+      "protein",
+      "enzyme",
+      "biological",
+      "biofoundry"
+    ]
+  },
+  "application_penalties": {
+    "drug discovery": 1.0,
+    "biology": 0.35
+  }
+}

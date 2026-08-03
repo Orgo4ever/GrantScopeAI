@@ -1,0 +1,22 @@
+parameter,value
+model_name,GrantScopeAI context-aware hybrid
+model_type,Unsupervised TF-IDF retrieval with expert-defined scientific ranking rules
+catalogue_documents,2943
+source_grant_records,3339
+vocabulary_size,103714
+matrix_rows,2943
+matrix_columns,103714
+matrix_nonzero_values,927882
+title_weight,3
+ngram_range,"(1, 2)"
+minimum_document_frequency,2
+maximum_document_frequency,0.95
+tfidf_weight,0.58
+specific_domain_weight,0.17
+context_weight,0.12
+workflow_weight,0.13
+off_domain_penalty_weight,0.1
+benchmark_projects,8
+relevant_benchmark_projects,7
+selected_model,True
+exported_at,2026-08-03T20:38:19.330443

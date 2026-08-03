@@ -1,0 +1,4 @@
+query_id,query_label,results_returned,unique_title_families,represented_sources,represented_topics,explained_results
+Q1,Catalyst discovery,5,5,1,2,5
+Q2,Sustainable polymer materials,5,5,2,4,5
+Q3,Autonomous reaction laboratory,5,5,2,4,5
