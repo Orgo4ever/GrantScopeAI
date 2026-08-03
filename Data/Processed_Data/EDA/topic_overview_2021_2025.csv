@@ -1,0 +1,9 @@
+﻿topic,total_grants,cordis_grants,nsf_grants,broad_grants,core_grants,grant_count_2022,grant_count_2025,grant_change_2022_2025,grant_growth_2022_2025_pct,publication_count_2022,publication_count_2025,publication_change_2022_2025,publication_growth_2022_2025_pct,core_share_pct
+AI-enabled materials,913,118,795,140,773,152,227,75,49.3,146376,386893,240517,164.3,84.7
+AI-enabled chemistry,803,138,665,124,679,153,207,54,35.3,54337,142246,87909,161.8,84.6
+AI-enabled catalysis,343,70,273,22,321,63,88,25,39.7,8449,39893,31444,372.2,93.6
+Materials informatics,122,2,120,12,110,19,13,-6,-31.6,511,1021,510,99.8,90.2
+Cheminformatics,23,9,14,5,18,4,7,3,75.0,2997,4975,1978,66.0,78.3
+Autonomous laboratories,14,1,13,4,10,2,6,4,200.0,119,859,740,621.8,71.4
+Reaction prediction,12,3,9,1,11,5,3,-2,-40.0,256,576,320,125.0,91.7
+Molecular machine learning,9,0,9,4,5,0,4,4,,263,549,286,108.7,55.6

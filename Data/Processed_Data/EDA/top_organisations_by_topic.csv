@@ -1,0 +1,123 @@
+﻿primary_topic,source,organisation_name_clean,grant_count,median_award_amount,first_award_year,latest_award_year
+AI-enabled catalysis,CORDIS,KATHOLIEKE UNIVERSITEIT LEUVEN,3,3949949.0,2022,2025
+AI-enabled catalysis,CORDIS,UNIVERSITAT DE GIRONA,3,322164.0,2023,2025
+AI-enabled catalysis,CORDIS,FONDAZIONE ISTITUTO ITALIANO DI TECNOLOGIA,2,820075.0,2023,2024
+AI-enabled catalysis,CORDIS,FUNDACIO INSTITUT CATALA D'INVESTIGACIO QUIMICA,2,178381.0,2022,2024
+AI-enabled catalysis,CORDIS,POLITECNICO DI MILANO,2,4254022.0,2022,2023
+AI-enabled catalysis,CORDIS,TECHNISCHE UNIVERSITAET MUENCHEN,2,1742450.0,2022,2025
+AI-enabled catalysis,CORDIS,UNIVERSIDAD DEL PAIS VASCO/ EUSKAL HERRIKO UNIBERTSITATEA,2,3060139.0,2022,2023
+AI-enabled catalysis,CORDIS,AALBORG UNIVERSITET,1,5707393.0,2022,2022
+AI-enabled catalysis,CORDIS,AARHUS UNIVERSITET,1,196829.0,2023,2023
+AI-enabled catalysis,CORDIS,AGENCIA ESTATAL CONSEJO SUPERIOR DE INVESTIGACIONES CIENTIFICAS,1,4997125.0,2022,2022
+AI-enabled catalysis,NSF,Regents of the University of Michigan - Ann Arbor,8,495088.0,2021,2024
+AI-enabled catalysis,NSF,Rutgers University New Brunswick,8,727325.0,2021,2025
+AI-enabled catalysis,NSF,University of Chicago,7,1800000.0,2021,2025
+AI-enabled catalysis,NSF,Georgia Tech Research Corporation,6,296426.0,2023,2025
+AI-enabled catalysis,NSF,Pennsylvania State Univ University Park,6,523193.0,2021,2025
+AI-enabled catalysis,NSF,University of California-Los Angeles,6,482172.0,2021,2025
+AI-enabled catalysis,NSF,Carnegie Mellon University,5,550000.0,2021,2024
+AI-enabled catalysis,NSF,Johns Hopkins University,5,431454.0,2021,2025
+AI-enabled catalysis,NSF,University of Illinois at Urbana-Champaign,5,600000.0,2021,2025
+AI-enabled catalysis,NSF,Virginia Polytechnic Institute and State University,5,497036.0,2021,2024
+AI-enabled chemistry,CORDIS,CENTRE NATIONAL DE LA RECHERCHE SCIENTIFIQUE CNRS,8,2000000.0,2022,2025
+AI-enabled chemistry,CORDIS,AARHUS UNIVERSITET,3,230774.0,2022,2024
+AI-enabled chemistry,CORDIS,AGENCIA ESTATAL CONSEJO SUPERIOR DE INVESTIGACIONES CIENTIFICAS,3,2477356.0,2024,2024
+AI-enabled chemistry,CORDIS,HELMHOLTZ ZENTRUM MUENCHEN DEUTSCHES FORSCHUNGSZENTRUM FUER GESUNDHEIT UND UMWELT GMBH,3,2497298.0,2023,2025
+AI-enabled chemistry,CORDIS,KOBENHAVNS UNIVERSITET,3,230774.0,2023,2024
+AI-enabled chemistry,CORDIS,UNIWERSYTET WARSZAWSKI,3,2997641.0,2022,2025
+AI-enabled chemistry,CORDIS,AALBORG UNIVERSITET,2,1113855.0,2022,2025
+AI-enabled chemistry,CORDIS,ALMA MATER STUDIORUM - UNIVERSITA DI BOLOGNA,2,2444255.0,2023,2024
+AI-enabled chemistry,CORDIS,EUROPEAN MOLECULAR BIOLOGY LABORATORY,2,165576.0,2022,2024
+AI-enabled chemistry,CORDIS,FRAUNHOFER GESELLSCHAFT ZUR FORDERUNG DER ANGEWANDTEN FORSCHUNG EV,2,3224675.0,2025,2025
+AI-enabled chemistry,NSF,Purdue University,17,500000.0,2021,2025
+AI-enabled chemistry,NSF,Massachusetts Institute of Technology,10,519916.0,2021,2025
+AI-enabled chemistry,NSF,University of California-Berkeley,10,441286.0,2021,2025
+AI-enabled chemistry,NSF,University of California-San Diego,10,357033.0,2023,2025
+AI-enabled chemistry,NSF,Arizona State University,9,445000.0,2022,2025
+AI-enabled chemistry,NSF,Georgia Tech Research Corporation,9,300000.0,2022,2025
+AI-enabled chemistry,NSF,North Carolina State University,9,467607.0,2021,2025
+AI-enabled chemistry,NSF,"OHIO STATE UNIVERSITY, THE",9,400000.0,2021,2025
+AI-enabled chemistry,NSF,University of Wisconsin-Madison,9,510959.0,2021,2025
+AI-enabled chemistry,NSF,University of California-Los Angeles,8,410040.0,2022,2025
+AI-enabled materials,CORDIS,CENTRE NATIONAL DE LA RECHERCHE SCIENTIFIQUE CNRS,3,3438122.0,2023,2024
+AI-enabled materials,CORDIS,CONSIGLIO NAZIONALE DELLE RICERCHE,3,363400.0,2023,2024
+AI-enabled materials,CORDIS,FUNDACION IMDEA MATERIALES,3,209915.0,2023,2025
+AI-enabled materials,CORDIS,KATHOLIEKE UNIVERSITEIT LEUVEN,3,216240.0,2024,2025
+AI-enabled materials,CORDIS,SINTEF AS,3,7114973.0,2023,2024
+AI-enabled materials,CORDIS,TECHNISCHE UNIVERSITEIT EINDHOVEN,3,1996143.0,2023,2024
+AI-enabled materials,CORDIS,AALBORG UNIVERSITET,2,4089257.0,2023,2025
+AI-enabled materials,CORDIS,AVESTA HOLDING,2,5878804.0,2022,2023
+AI-enabled materials,CORDIS,DANMARKS TEKNISKE UNIVERSITET,2,1542870.0,2023,2024
+AI-enabled materials,CORDIS,ETHNIKO KENTRO EREVNAS KAI TECHNOLOGIKIS ANAPTYXIS,2,5999572.0,2023,2024
+AI-enabled materials,NSF,University of Illinois at Urbana-Champaign,20,660039.0,2021,2025
+AI-enabled materials,NSF,University of Wisconsin-Madison,20,492500.0,2021,2025
+AI-enabled materials,NSF,Regents of the University of Michigan - Ann Arbor,18,524946.0,2021,2025
+AI-enabled materials,NSF,Arizona State University,16,323160.0,2022,2025
+AI-enabled materials,NSF,Purdue University,16,498882.0,2021,2025
+AI-enabled materials,NSF,Texas A&M Engineering Experiment Station,16,490352.0,2021,2025
+AI-enabled materials,NSF,University of Texas at Austin,16,414937.0,2021,2025
+AI-enabled materials,NSF,Georgia Tech Research Corporation,13,600000.0,2021,2025
+AI-enabled materials,NSF,North Carolina State University,13,450000.0,2021,2025
+AI-enabled materials,NSF,Pennsylvania State Univ University Park,13,400000.0,2021,2025
+Autonomous laboratories,CORDIS,FRAUNHOFER GESELLSCHAFT ZUR FORDERUNG DER ANGEWANDTEN FORSCHUNG EV,1,3603168.0,2024,2024
+Autonomous laboratories,NSF,North Carolina State University,3,920000.0,2023,2025
+Autonomous laboratories,NSF,University of Illinois at Urbana-Champaign,2,7583334.0,2025,2025
+Autonomous laboratories,NSF,Brown University,1,600000.0,2025,2025
+Autonomous laboratories,NSF,Fordham University,1,1074218.0,2022,2022
+Autonomous laboratories,NSF,Georgia Tech Research Corporation,1,333332.0,2025,2025
+Autonomous laboratories,NSF,Regents of the University of Michigan - Ann Arbor,1,1370964.0,2024,2024
+Autonomous laboratories,NSF,SUNY at Buffalo,1,480000.0,2025,2025
+Autonomous laboratories,NSF,University of California-Berkeley,1,300000.0,2022,2022
+Autonomous laboratories,NSF,University of California-Davis,1,425000.0,2024,2024
+Autonomous laboratories,NSF,Vanderbilt University,1,999810.0,2021,2021
+Cheminformatics,CORDIS,HITS GGMBH,1,1492821.0,2022,2022
+Cheminformatics,CORDIS,ISTITUTO DI RICERCHE FARMACOLOGICHE MARIO NEGRI,1,1994770.0,2024,2024
+Cheminformatics,CORDIS,UNIVERSIDAD AUTONOMA DE MADRID,1,2047125.0,2022,2022
+Cheminformatics,CORDIS,UNIVERSITA DEGLI STUDI DI FIRENZE,1,3360825.0,2022,2022
+Cheminformatics,CORDIS,UNIVERSITAT DE BARCELONA,1,2999205.0,2025,2025
+Cheminformatics,CORDIS,UNIVERSITEIT GENT,1,1999763.0,2024,2024
+Cheminformatics,CORDIS,UNIVERSITEIT MAASTRICHT,1,22982612.0,2022,2022
+Cheminformatics,CORDIS,UNIVERSITEIT UTRECHT,1,2988378.0,2023,2023
+Cheminformatics,CORDIS,VRIJE UNIVERSITEIT BRUSSEL,1,200400.0,2025,2025
+Cheminformatics,NSF,Case Western Reserve University,1,252772.0,2021,2021
+Cheminformatics,NSF,"INSILICA, LLC",1,1454200.0,2023,2023
+Cheminformatics,NSF,Indiana University,1,450000.0,2021,2021
+Cheminformatics,NSF,Kean University,1,455019.0,2025,2025
+Cheminformatics,NSF,Massachusetts Institute of Technology,1,3000000.0,2025,2025
+Cheminformatics,NSF,Michigan State University,1,550000.0,2025,2025
+Cheminformatics,NSF,North Dakota State University Fargo,1,191801.0,2023,2023
+Cheminformatics,NSF,"OHIO STATE UNIVERSITY, THE",1,499995.0,2021,2021
+Cheminformatics,NSF,Rutgers University New Brunswick,1,28726.0,2025,2025
+Cheminformatics,NSF,"SANGALI, INC.",1,275000.0,2023,2023
+Materials informatics,CORDIS,FUNDACION IMDEA MATERIALES,1,181153.0,2023,2023
+Materials informatics,CORDIS,VRIJE UNIVERSITEIT BRUSSEL,1,19949437.0,2025,2025
+Materials informatics,NSF,Northwestern University at Chicago,6,624066.0,2021,2024
+Materials informatics,NSF,Georgia Tech Research Corporation,5,453737.0,2021,2024
+Materials informatics,NSF,Johns Hopkins University,4,486998.0,2021,2025
+Materials informatics,NSF,Lehigh University,4,1222802.0,2021,2025
+Materials informatics,NSF,Texas A&M Engineering Experiment Station,4,1391456.0,2021,2024
+Materials informatics,NSF,University of California-Santa Barbara,4,1094690.0,2021,2025
+Materials informatics,NSF,Columbia University,3,271000.0,2021,2023
+Materials informatics,NSF,Duke University,3,550000.0,2022,2023
+Materials informatics,NSF,Iowa State University,3,553654.0,2022,2024
+Materials informatics,NSF,SUNY at Buffalo,3,312359.0,2021,2025
+Molecular machine learning,NSF,Emory University,1,316765.0,2023,2023
+Molecular machine learning,NSF,George Mason University,1,299320.0,2023,2023
+Molecular machine learning,NSF,Harvard University,1,566128.0,2024,2024
+Molecular machine learning,NSF,"OHIO STATE UNIVERSITY, THE",1,280000.0,2025,2025
+Molecular machine learning,NSF,Regents of the University of Michigan - Ann Arbor,1,500000.0,2025,2025
+Molecular machine learning,NSF,University of California-Irvine,1,50000.0,2025,2025
+Molecular machine learning,NSF,University of Minnesota-Twin Cities,1,220000.0,2025,2025
+Molecular machine learning,NSF,University of Missouri-Columbia,1,981182.0,2023,2023
+Molecular machine learning,NSF,Villanova University,1,183910.0,2023,2023
+Reaction prediction,CORDIS,UNIVERSITEIT VAN AMSTERDAM,2,1075000.0,2022,2025
+Reaction prediction,CORDIS,UNIVERSITAET MUENSTER,1,2499250.0,2023,2023
+Reaction prediction,NSF,Massachusetts Institute of Technology,1,650000.0,2022,2022
+Reaction prediction,NSF,Northwestern University at Chicago,1,1800000.0,2022,2022
+Reaction prediction,NSF,Purdue University,1,7199398.0,2025,2025
+Reaction prediction,NSF,Regents of the University of Michigan - Ann Arbor,1,770000.0,2023,2023
+Reaction prediction,NSF,The Scripps Research Institute,1,549996.0,2025,2025
+Reaction prediction,NSF,University of California-Davis,1,493008.0,2024,2024
+Reaction prediction,NSF,University of California-Irvine,1,418678.0,2022,2022
+Reaction prediction,NSF,University of California-Riverside,1,743908.0,2023,2023
+Reaction prediction,NSF,University of Utah,1,505681.0,2022,2022
