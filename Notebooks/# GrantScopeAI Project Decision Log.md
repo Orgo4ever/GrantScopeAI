@@ -803,3 +803,73 @@ Notebook 06 now includes:
 - ten validated application-ready exports.
 
 **Next step:** Build and evaluate the keyword-overlap baseline and TF-IDF similarity model in Notebook 07.
+
+## 2026-08-03 — Select context-aware hybrid similarity model
+
+### Decision
+
+GrantScopeAI will use a context-aware hybrid recommendation model combining:
+
+- normalized, title-weighted TF-IDF;
+- cosine similarity;
+- scientific-domain evidence;
+- broader chemistry and reaction context;
+- research-workflow coverage;
+- a small penalty for clearly unrelated application areas;
+- project-title diversification to prevent collaborative award families from dominating the results.
+
+The model searches 2,943 unique modelling documents while preserving links to all 3,339 original grant records.
+
+### Rationale
+
+A simple keyword-overlap baseline was transparent but gave equal importance to common and distinctive terms.
+
+The initial TF-IDF model improved term weighting, but its ranking did not align sufficiently with the manually reviewed benchmark. Several relevant chemistry projects ranked below a weaker drug-discovery example.
+
+Successive model versions were evaluated:
+
+1. Initial TF-IDF
+2. Normalized, title-weighted TF-IDF
+3. Concept-aware hybrid
+4. Field-aware hybrid
+5. Context-aware hybrid
+
+The context-aware hybrid produced the clearest separation between relevant and off-domain projects:
+
+- 3 of 7 relevant projects ranked in the top 25;
+- 5 of 7 ranked in the top 50;
+- the best strong match improved from rank 54 to rank 14;
+- the weak drug-discovery comparison fell to rank 212;
+- all 7 relevant projects ranked above the weak comparison.
+
+### Validation
+
+The final model was tested with three distinct research concepts:
+
+- machine-learning-guided catalyst discovery;
+- sustainable polymer materials;
+- autonomous reaction laboratories.
+
+Each query returned five unique project families with explainable shared terms.
+
+The exported catalogue, vectorizer, sparse matrix, configuration, and evaluation files were independently reloaded. All 8 validation checks passed.
+
+### Limitations
+
+The eight-project manual benchmark is small and query-specific. It is used as a qualitative retrieval check rather than a formal accuracy estimate.
+
+The model identifies similar funded research projects. It does not predict funding success or proposal acceptance because rejected-proposal data are not available.
+
+Further tuning against the same benchmark was avoided to reduce overfitting.
+
+### Consequences
+
+The selected model is explainable, computationally lightweight, and suitable for deployment in Streamlit.
+
+Each recommendation can display:
+
+- similarity and final ranking scores;
+- shared scientific terms;
+- domain, context, and workflow evidence;
+- source, programme, organisation, year, and funding metadata;
+- links back to the original grant record.
