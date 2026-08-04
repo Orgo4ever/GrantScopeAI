@@ -873,3 +873,97 @@ Each recommendation can display:
 - domain, context, and workflow evidence;
 - source, programme, organisation, year, and funding metadata;
 - links back to the original grant record.
+
+## 2026-08-04 — Build Streamlit similarity-search MVP
+
+### Decision
+
+GrantScopeAI will use a Streamlit interface that loads the previously exported model assets and exposes the final context-aware similarity search as an interactive research-discovery tool.
+
+The application architecture separates:
+
+- `app.py` for the user interface and result presentation;
+- `src/similarity_search.py` for asset loading, text normalization, ranking, and explanation logic;
+- `Models/` for the fitted TF-IDF vectorizer and sparse matrix;
+- `Data/Processed_Data/Model/` for the aligned search catalogue and model configuration.
+
+The app does not rebuild or retrain the model when it starts.
+
+### Rationale
+
+Separating the interface from the model logic makes the application easier to:
+
+- test;
+- debug;
+- maintain;
+- reuse outside Streamlit;
+- update without rerunning the modelling notebook.
+
+Loading the exported vectorizer, sparse matrix, catalogue, and configuration also reduces startup time and ensures the deployed application uses the same validated model developed in Notebook 07.
+
+### Interface decisions
+
+The Streamlit MVP includes:
+
+- a research-concept text area;
+- an adjustable recommendation count;
+- funding-source filtering;
+- primary-topic filtering;
+- award-year filtering;
+- expandable recommendation cards;
+- links to original NSF and CORDIS records.
+
+Filters are placed in the sidebar so the primary workflow remains focused on the research concept and recommendations.
+
+The source filter dynamically limits the available topic choices to topics represented within the selected source.
+
+### Result presentation
+
+Each recommendation displays:
+
+- project rank and title;
+- relevance score;
+- source and award year;
+- primary topic;
+- shared TF-IDF terms;
+- an explanation of the domain, context, and workflow match;
+- organisation and programme information;
+- native-currency award amount;
+- project abstract;
+- original source link.
+
+The score is labelled as a `relevance score`, not a funding score or acceptance probability.
+
+### Validation
+
+The application was tested using:
+
+- the catalyst-discovery demonstration concept;
+- an autonomous reaction-laboratory concept;
+- NSF-only searches;
+- CORDIS-only searches;
+- topic and award-year filters;
+- different recommendation counts;
+- an empty research-concept submission;
+- a fresh Streamlit restart.
+
+The app successfully reloaded its model assets after a fresh restart, returned filtered recommendations, handled empty input without crashing, and continued working after the warning was displayed.
+
+### Limitations
+
+- The relevance score is relative to the current query and filtered candidate set.
+- The app retrieves similar funded projects; it does not predict funding success.
+- Recommendation quality depends on the wording of the research concept and the coverage of the NSF and CORDIS corpus.
+- Scientific-domain and workflow rules are currently designed for AI-enabled chemistry and materials research.
+- Funding amounts remain in their native currencies and are not directly compared or summed.
+- The current interface is a functional MVP and has not yet received final visual styling or deployment optimization.
+
+### Consequences
+
+The core Streamlit search workflow is now functional and ready for:
+
+- interface refinement;
+- final documentation;
+- screenshots;
+- presentation preparation;
+- integration with the project’s Tableau findings.

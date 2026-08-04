@@ -1,3 +1,29 @@
+## Project Status
+
+Completed:
+
+- NSF data extraction and cleaning
+- CORDIS data cleaning
+- OpenAlex topic-year publication data
+- cross-source integration and validation
+- exploratory data analysis
+- Tableau-ready analytical outputs
+- TF-IDF similarity model
+- context-aware hybrid ranking
+- manual benchmark and generalization testing
+- exported and validated model package
+- working Streamlit similarity-search MVP
+- source, topic, year, and recommendation-count filters
+- explainable recommendation cards
+
+In progress:
+
+- final interface refinement
+- Tableau dashboard completion
+- final documentation and screenshots
+- presentation development
+- deployment preparation
+
 # GrantScopeAI
 GrantScopeAI is a Streamlit research-intelligence tool that combines CORDIS, NSF, and OpenAlex data to explore funding trends, assess research momentum, and recommend similar funded projects using TF-IDF text similarity.
 
