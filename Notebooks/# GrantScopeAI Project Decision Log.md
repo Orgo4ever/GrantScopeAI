@@ -967,3 +967,54 @@ The core Streamlit search workflow is now functional and ready for:
 - screenshots;
 - presentation preparation;
 - integration with the project’s Tableau findings.
+## 2026-08-05 — Tableau dashboard architecture and filtering
+
+### Decision
+
+Build the Tableau dashboard from separate prepared CSV data sources rather than joining all dashboard tables into one dataset.
+
+### Reason
+
+The dashboard tables have different levels of granularity:
+
+- Grant-level records
+- Annual topic summaries
+- Fixed-period momentum comparisons
+- Topic-level programme summaries
+- Topic-level organisation summaries
+
+Joining these tables directly could duplicate records and produce incorrect counts or funding totals.
+
+### Implementation
+
+The dashboard uses separate worksheets and data sources, with shared topic fields mapped where appropriate.
+
+The visible dashboard filters include:
+
+- Source
+- Primary Topic
+- Award Year
+
+Dashboard filter actions were also created so selecting a topic in the momentum scatter plot filters compatible views across the separate data sources.
+
+Separate actions were required because the worksheets are based on different CSV files and use either `Topic` or `Primary Topic` as the relevant category field.
+
+### Currency decision
+
+NSF funding remains in USD and CORDIS funding remains in EUR. The dashboard does not create a combined funding total because the currencies and funding definitions are not directly equivalent.
+
+### Year-filter decision
+
+The year filter is applied only to worksheets containing annual or grant-level data.
+
+It is not applied to:
+
+- The fixed 2022–2025 momentum comparison
+- Full-period programme summaries
+- Full-period organisation summaries
+
+This prevents the dashboard from suggesting that these precomputed values are dynamically recalculated for arbitrary year selections.
+
+### Status
+
+Core dashboard functionality is complete. Final visual styling and presentation testing remain scheduled for the next work session.

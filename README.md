@@ -363,3 +363,66 @@ Each recommendation can display:
 - domain, context, and workflow evidence;
 - source, programme, organisation, year, and funding metadata;
 - links back to the original grant record.
+## Tableau Dashboard
+
+An interactive Tableau dashboard was developed to explore funding activity and research momentum across AI-enabled chemistry and materials topics.
+
+### Dashboard views
+
+The dashboard currently includes:
+
+- Unique funded-project count
+- Number of research topics represented
+- NSF funding shown in USD
+- CORDIS funding shown in EUR
+- Grant activity versus publication momentum by topic
+- Annual grant activity by topic
+- Grant activity by topic and funding source
+- Top funding programmes
+- Top funded organisations
+
+### Interactivity
+
+The dashboard includes the following controls:
+
+- Funding source filter
+- Primary topic filter
+- Award-year filter
+- Interactive topic selection from the momentum scatter plot
+
+Selecting a topic bubble in the momentum chart filters the compatible dashboard views to the selected research topic. Clicking blank space in the momentum chart restores the complete dashboard.
+
+Because the Tableau worksheets use multiple prepared CSV files at different levels of aggregation, separate dashboard filter actions were created for the different target data sources.
+
+### Filter limitations
+
+Not every filter applies to every view:
+
+- The year filter applies to views containing annual or grant-level records.
+- The momentum chart contains fixed 2022–2025 growth calculations and is therefore not recalculated by the year filter.
+- The top-programme and top-organisation datasets are aggregated across the full 2021–2025 period.
+- Source filtering is unavailable for views whose prepared datasets do not include source-level records.
+
+These limitations are intentional and prevent the dashboard from implying that fixed-period metrics were dynamically recalculated.
+
+### Currency treatment
+
+NSF and CORDIS funding are intentionally displayed separately:
+
+- NSF amounts are shown in USD.
+- CORDIS amounts are shown in EUR.
+- USD and EUR values are never summed into one combined funding measure.
+
+This also reflects differences between NSF estimated award totals and CORDIS European Commission contributions.
+
+### Current dashboard status
+
+The dashboard structure, charts, KPI cards, filters, and primary topic-selection actions are functional.
+
+Remaining visual-polish work includes:
+
+- Standardising the dashboard color palette
+- Applying consistent NSF and CORDIS colors
+- Refining dashboard backgrounds and spacing
+- Reviewing font sizes, legends, and tooltips
+- Completing a final interaction and presentation-mode test
