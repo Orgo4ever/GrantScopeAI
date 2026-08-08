@@ -36,25 +36,36 @@ def get_model_assets():
 # ---------------------------------------------------
 # PAGE HEADER
 # ---------------------------------------------------
-
 st.title("🔬 GrantScopeAI")
 
 st.subheader(
-    "Discover funded research projects related to your scientific concept"
+    "Explore the funding landscape around your research idea"
 )
 
 st.write(
     """
-    GrantScopeAI compares a research concept with funded NSF and CORDIS
-    projects using an explainable similarity-search model.
+    GrantScopeAI helps researchers discover comparable funded projects,
+    identify relevant research organisations and funding programmes,
+    and find useful starting points for developing a scientific concept.
+    """
+)
+
+st.markdown(
+    """
+    **How to use GrantScopeAI**
+
+    1. Describe your research concept below.
+    2. Review the most similar NSF and CORDIS funded projects.
+    3. Save promising projects to compare them side-by-side.
+    4. Explore recommended organisations, programmes, topics, and projects.
     """
 )
 
 st.info(
-    "GrantScopeAI identifies similar funded projects. "
-    "It does not predict whether a proposal will receive funding."
+    "GrantScopeAI is a research-discovery and decision-support tool. "
+    "Similarity scores measure how closely a concept matches historical "
+    "funded projects — they are not estimates of funding probability."
 )
-
 
 # ---------------------------------------------------
 # LOAD AND VALIDATE MODEL ASSETS
@@ -88,34 +99,36 @@ configuration = model_assets["configuration"]
 # MODEL SUMMARY
 # ---------------------------------------------------
 
-st.success(
-    "GrantScopeAI model assets loaded and validated successfully."
-)
+with st.expander("ℹ️ Model and dataset details"):
 
-metric_1, metric_2, metric_3 = st.columns(3)
+    metric_1, metric_2, metric_3 = st.columns(3)
 
-metric_1.metric(
-    label="Search documents",
-    value=f"{len(catalog_df):,}",
-)
+    metric_1.metric(
+        label="Search documents",
+        value=f"{len(catalog_df):,}",
+    )
 
-metric_2.metric(
-    label="TF-IDF features",
-    value=f"{tfidf_matrix.shape[1]:,}",
-)
+    metric_2.metric(
+        label="TF-IDF features",
+        value=f"{tfidf_matrix.shape[1]:,}",
+    )
 
-metric_3.metric(
-    label="Data sources",
-    value=catalog_df["source"].nunique(),
-)
+    metric_3.metric(
+        label="Data sources",
+        value=catalog_df["source"].nunique(),
+    )
 
-st.caption(
-    "Active model: "
-    f"{configuration.get(
-        'model_name',
-        'GrantScopeAI similarity model',
-    )}"
-)
+    st.caption(
+        "Active model: "
+        f"{configuration.get(
+            'model_name',
+            'GrantScopeAI similarity model',
+        )}"
+    )
+
+    st.success(
+        "Model assets loaded and validated successfully."
+    )
 
 
 # ---------------------------------------------------
@@ -125,7 +138,12 @@ st.caption(
 st.divider()
 
 st.header(
-    "Search funded research projects"
+    "1. Describe your research concept"
+)
+
+st.write(
+    "Enter an early-stage research idea. GrantScopeAI will compare it "
+    "with historically funded NSF and CORDIS projects."
 )
 
 example_query = (
@@ -135,21 +153,36 @@ example_query = (
 )
 
 research_concept = st.text_area(
-    "Describe your research concept",
+    "Research concept",
     value=example_query,
     height=140,
+    placeholder=(
+        "Example: Machine learning for predicting polymer properties "
+        "and designing recyclable materials..."
+    ),
     help=(
-        "Include the scientific area, research approach, "
-        "and intended application."
+        "For stronger matches, include the scientific domain, "
+        "research method, and intended application."
     ),
 )
+
+st.caption(
+    "Tip: specific concepts usually produce more useful matches "
+    "than broad keywords."
+)
+
 
 # ---------------------------------------------------
 # SIDEBAR FILTERS
 # ---------------------------------------------------
 
 with st.sidebar:
-    st.header("Search filters")
+    st.header("Refine your search")
+
+    st.caption(
+        "Optional filters narrow the historical grant catalogue "
+        "before projects are ranked."
+    )
 
     # Source filter
     source_options = [
@@ -188,7 +221,7 @@ with st.sidebar:
     ]
 
     selected_topic = st.selectbox(
-        "Primary topic",
+        "Research topic",
         options=topic_options,
         index=0,
     )
@@ -203,7 +236,7 @@ with st.sidebar:
     )
 
     selected_year_range = st.slider(
-        "Award-year range",
+        "Award year",
         min_value=minimum_year,
         max_value=maximum_year,
         value=(minimum_year, maximum_year),
@@ -212,7 +245,7 @@ with st.sidebar:
 
     # Recommendation-count control
     number_of_results = st.slider(
-        "Number of recommendations",
+        "Results to display",
         min_value=1,
         max_value=20,
         value=10,
@@ -222,26 +255,37 @@ with st.sidebar:
     st.divider()
 
     st.caption(
-        "Filters narrow the available grant catalogue "
-        "before the final ranking is displayed."
+        "NSF and CORDIS funding amounts remain in their "
+        "original currencies and are not combined."
     )
 
+
 search_button = st.button(
-    "Find similar funded projects",
+    "🔎 Find similar funded projects",
     type="primary",
+    use_container_width=True,
 )
 
+# ---------------------------------------------------
+# SEARCH RESULTS
+# ---------------------------------------------------
 
-# ---------------------------------------------------
-# RUN SEARCH
-# ---------------------------------------------------
+st.divider()
+
+st.header("2. Review similar funded projects")
+
+st.write(
+    "Explore historically funded projects that are most closely related "
+    "to your research concept. Open a result to review the evidence behind "
+    "its match."
+)
 
 if search_button or st.session_state.search_results is not None:
     try:
         with st.spinner(
             "Comparing your concept with funded projects..."
         ):
-                search_results_df = search_similar_projects(
+            search_results_df = search_similar_projects(
                 query=research_concept,
                 catalog_df=catalog_df,
                 vectorizer=vectorizer,
@@ -253,27 +297,35 @@ if search_button or st.session_state.search_results is not None:
                 year_min=selected_year_range[0],
                 year_max=selected_year_range[1],
             )
-                st.session_state.search_results = search_results_df
+
+            st.session_state.search_results = search_results_df
+
         if search_results_df.empty:
             st.warning(
-                "No matching projects were found."
+                "No matching projects were found. Try broadening your "
+                "research concept or adjusting the search filters."
             )
 
         else:
             st.success(
-                f"Found {len(search_results_df)} "
-                "similar project families."
+                f"Showing {len(search_results_df)} similar funded project(s)."
+            )
+
+            st.caption(
+                "The top three matches are expanded automatically. "
+                "Save useful projects to build a comparison shortlist."
             )
 
             # ---------------------------------------
             # RESULT CARDS
             # ---------------------------------------
+
             for _, project in search_results_df.iterrows():
 
                 project_key = (
-                f"{project['source']}|"
-                f"{project['title']}|"
-                f"{project['award_year']}"
+                    f"{project['source']}|"
+                    f"{project['title']}|"
+                    f"{project['award_year']}"
                 )
 
                 rank = int(project["rank"])
@@ -284,7 +336,7 @@ if search_button or st.session_state.search_results is not None:
                 )
 
                 result_title = (
-                    f"#{rank}: {project['title']}"
+                    f"#{rank} · {project['title']}"
                 )
 
                 with st.expander(
@@ -295,12 +347,12 @@ if search_button or st.session_state.search_results is not None:
                     score_col, source_col, year_col = st.columns(3)
 
                     score_col.metric(
-                        "Relevance score",
+                        "Concept relevance",
                         f"{project['final_score_pct']:.1f}%",
                     )
 
                     source_col.metric(
-                        "Source",
+                        "Funding source",
                         project["source"],
                     )
 
@@ -310,9 +362,10 @@ if search_button or st.session_state.search_results is not None:
                     )
 
                     st.caption(
-                        "This score measures similarity to the "
-                        "research concept. It is not a funding probability."
+                        "Relevance measures similarity to your research "
+                        "concept. It is not a prediction of funding success."
                     )
+
                     if already_saved:
                         st.success("✓ Saved to shortlist")
 
@@ -332,13 +385,14 @@ if search_button or st.session_state.search_results is not None:
 
                     # Topic
                     st.markdown(
-                        f"**Topic:** {project['primary_topic']}"
+                        f"**Research area:** {project['primary_topic']}"
                     )
 
                     # Explanation
-                    st.markdown(
-                        f"**Why it matched:** "
-                        f"{project['why_it_matched']}"
+                    st.markdown("**Why this project matched**")
+
+                    st.write(
+                        project["why_it_matched"]
                     )
 
                     shared_terms = project.get(
@@ -348,7 +402,7 @@ if search_button or st.session_state.search_results is not None:
 
                     if shared_terms:
                         st.markdown(
-                            "**Shared terms:** "
+                            "**Shared concepts:** "
                             + " · ".join(shared_terms)
                         )
 
@@ -365,7 +419,7 @@ if search_button or st.session_state.search_results is not None:
                         and organisation.lower() != "nan"
                     ):
                         st.markdown(
-                            f"**Organisation:** {organisation}"
+                            f"**Recipient organisation:** {organisation}"
                         )
 
                     # Programme
@@ -381,7 +435,7 @@ if search_button or st.session_state.search_results is not None:
                         and programme.lower() != "nan"
                     ):
                         st.markdown(
-                            f"**Programme:** {programme}"
+                            f"**Funding programme:** {programme}"
                         )
 
                     # Funding amount
@@ -447,7 +501,7 @@ if search_button or st.session_state.search_results is not None:
                         and source_url.lower() != "nan"
                     ):
                         st.link_button(
-                            "Open original grant record",
+                            "View original funded project",
                             source_url,
                         )
 
@@ -461,12 +515,19 @@ if search_button or st.session_state.search_results is not None:
             "The search could not be completed."
         )
         st.exception(error)
+
+
 # -----------------------------
 # SHORTLIST DISPLAY
 # -----------------------------
 
 st.divider()
-st.subheader("⭐ Saved Project Shortlist")
+st.header("3. Save and compare promising projects")
+
+st.caption(
+    "Shortlist useful matches, reopen their details, "
+    "compare up to three projects, and export your selections."
+)
 selected_compare_keys = []
 
 if not st.session_state.shortlist:
@@ -673,7 +734,7 @@ for saved_project in st.session_state.shortlist:
 
 st.divider()
 
-st.header("🧭 Recommended Starting Points")
+st.header("4. Explore recommended starting points")
 
 st.caption(
     "Use your current research concept to identify organisations, "
@@ -936,4 +997,41 @@ else:
         "These recommendations are based on historical funded projects "
         "in the GrantScopeAI dataset and do not indicate that a programme "
         "is currently accepting applications."
+    )
+
+# ---------------------------------------------------
+# METHODS AND LIMITATIONS
+# ---------------------------------------------------
+
+st.divider()
+
+with st.expander("ℹ️ Methods & limitations"):
+
+    st.markdown(
+        """
+        **How GrantScopeAI works**
+
+        GrantScopeAI compares a user-entered research concept with
+        historical NSF and CORDIS funded projects using TF-IDF text
+        representations combined with scientific-domain and workflow
+        matching signals.
+
+        **Important limitations**
+
+        - Relevance scores measure similarity, not probability of funding.
+        - Historical funded projects do not represent currently open calls.
+        - Public grant metadata can be incomplete or inconsistent.
+        - NSF funding is reported in USD and CORDIS funding in EUR;
+          these currencies are not combined.
+        - Topic classifications and recommendations are analytical aids,
+          not authoritative funding guidance.
+        - Users should verify programme eligibility, deadlines, novelty,
+          and current opportunities with the original funding source.
+
+        **Intended use**
+
+        GrantScopeAI is designed as an exploratory research-discovery
+        and decision-support tool for identifying comparable projects
+        and useful places to begin further investigation.
+        """
     )
