@@ -16,7 +16,7 @@ if "search_results" not in st.session_state:
 # ---------------------------------------------------
 
 st.set_page_config(
-    page_title="GrantScopeAI",
+    page_title="GrantScope",
     page_icon="🔬",
     layout="wide",
 )
@@ -36,7 +36,7 @@ def get_model_assets():
 # ---------------------------------------------------
 # PAGE HEADER
 # ---------------------------------------------------
-st.title("🔬 GrantScopeAI")
+st.title("🔬 GrantScope")
 
 st.subheader(
     "Explore the funding landscape around your research idea"
@@ -44,7 +44,7 @@ st.subheader(
 
 st.write(
     """
-    GrantScopeAI helps researchers discover comparable funded projects,
+    GrantScope helps researchers discover comparable funded projects,
     identify relevant research organisations and funding programmes,
     and find useful starting points for developing a scientific concept.
     """
@@ -52,7 +52,7 @@ st.write(
 
 st.markdown(
     """
-    **How to use GrantScopeAI**
+    **How to use GrantScope**
 
     1. Describe your research concept below.
     2. Review the most similar NSF and CORDIS funded projects.
@@ -62,7 +62,7 @@ st.markdown(
 )
 
 st.info(
-    "GrantScopeAI is a research-discovery and decision-support tool. "
+    "GrantScope is a research-discovery and decision-support tool. "
     "Similarity scores measure how closely a concept matches historical "
     "funded projects — they are not estimates of funding probability."
 )
@@ -76,7 +76,7 @@ try:
 
 except (FileNotFoundError, ValueError) as error:
     st.error(
-        "The GrantScopeAI model could not be loaded."
+        "The GrantScope model could not be loaded."
     )
     st.exception(error)
     st.stop()
@@ -122,7 +122,7 @@ with st.expander("ℹ️ Model and dataset details"):
         "Active model: "
         f"{configuration.get(
             'model_name',
-            'GrantScopeAI similarity model',
+            'GrantScope similarity model',
         )}"
     )
 
@@ -142,7 +142,7 @@ st.header(
 )
 
 st.write(
-    "Enter an early-stage research idea. GrantScopeAI will compare it "
+    "Enter an early-stage research idea. GrantScope will compare it "
     "with historically funded NSF and CORDIS projects."
 )
 
@@ -995,7 +995,7 @@ else:
 
     st.caption(
         "These recommendations are based on historical funded projects "
-        "in the GrantScopeAI dataset and do not indicate that a programme "
+        "in the GrantScope dataset and do not indicate that a programme "
         "is currently accepting applications."
     )
 
@@ -1009,9 +1009,9 @@ with st.expander("ℹ️ Methods & limitations"):
 
     st.markdown(
         """
-        **How GrantScopeAI works**
+        **How GrantScope works**
 
-        GrantScopeAI compares a user-entered research concept with
+        GrantScope compares a user-entered research concept with
         historical NSF and CORDIS funded projects using TF-IDF text
         representations combined with scientific-domain and workflow
         matching signals.
@@ -1030,7 +1030,7 @@ with st.expander("ℹ️ Methods & limitations"):
 
         **Intended use**
 
-        GrantScopeAI is designed as an exploratory research-discovery
+        GrantScope is designed as an exploratory research-discovery
         and decision-support tool for identifying comparable projects
         and useful places to begin further investigation.
         """
